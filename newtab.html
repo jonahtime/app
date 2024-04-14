@@ -1,0 +1,64 @@
+<html>
+<head>
+</head>
+<body>
+    <script>
+        let current=new Date();
+        let dayoftheweek=current.getDay();
+        let hour=current.getHours();
+        function setCookie(cname, cvalue, exdays) 
+        { 
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        function getCookie(cname) {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) 
+            {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') 
+                {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        let lastday = getCookie('day');
+        let lasthour = getCookie ('hour');
+        let mode=getCookie('mode');
+        let h2 = Number(lasthour)+2;
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const forceqmark = urlParams.has('forceMode'); 
+        if(forceqmark===true) {
+            const forceMode = urlParams.get('forceMode');
+            setMode(forceMode);
+        } else {
+            if (Number(lastday)===dayoftheweek) {
+                setMode(mode);
+            } else {
+                if (dayoftheweek===6||hour > 20) {
+                    setMode('night');
+                } else if (dayoftheweek===0||hour < 8||hour > 14) {
+                    setMode('fun');
+                } else {
+                    setMode('work');
+                }
+            }
+        }
+        function setMode(cmode) {
+            setCookie('mode',cmode,10);
+            let newMode=getCookie('mode');
+            setCookie('day',dayoftheweek,365);
+            setCookie('hour',hour,365);
+            let url = 'https://www.jonahtime.com/newtab/' + cmode;
+            window.location.assign(url);}
+    </script>
+</body>
+</html>
