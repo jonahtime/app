@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Factoring Practice</title>
+  </head>
+  <body>
+    <h1>Factoring Practice</h1>
+      <p>Note: the ˆ symbol means rasied to the power of.</p>
+      <p id="difofsquares" class="link" onClick="DifferenceOfSquares();">Difference of Squares Equation</p>
+      <p id="pst" class="link" onClick="PerfectSquareTrinomial();">Perfect Square Trinomial Equation </p>
+      <p id="pst" class="link" onClick="Trinomial();"> Trinomial Equation </p>
+       <p id="leadco" class="link" onClick="LeadCo();"> Lead Coefficient Equation </p>
+      <p id="demo">Factoring goes here</p>
+      <p id="seeanswer" onClick="ShowAnswer();">See the Answer</p>
+    <!--  <p>Choose Difficulty: </p>
+  <p id="easy" class="link" onClick="Easy();"> Easy </p>
+        <p id="medium" class="link" onClick="Medium();"> Medium </p>
+  <p id="hard" class="link" onClick="Hard();"> Hard </p>-->
+
+      <script>
+      var emh = "e";
+
+
+
+var equation;
+var urlequation;
+window.addEventListener('load', function () {
+Trinomial();
+document.getElementById('easy').style.color = "green";
+document.getElementById('hard').style.color = "blue";
+document.getElementById('medium').style.color = "blue";
+
+}, false);
+function DifferenceOfSquares() {
+    var num1 = Math.floor((Math.random() * 30) -14);
+    num1 = num1*num1;
+    var num2 = Math.floor((Math.random() * 30) - 14);
+    num2 = num2*num2;
+    if (emh==="e") {
+    equation = num1 + "xˆ2 - " + num2;
+    urlequation = num1 + "x2 - " + num2;   
+    } else { 
+    equation = num1 + "xˆ2 - " + num2 + " = 0";
+    urlequation = num1 + "x2 - " + num2+ " = 0";   
+    }
+    document.getElementById("demo").innerHTML = equation;
+}
+function PerfectSquareTrinomial () {
+    var num1 = Math.floor((Math.random() * 8) -3);
+    var num2 = Math.floor((Math.random() * 20) -9);
+    var num3 = num1*num2*2; 
+    if (num1===0) {
+    num1=3;    
+    } else if (num2===0) {
+        num2=8;
+    }
+    num1 = num1*num1;
+    num2 = num2*num2;
+    if (emh==="e") {
+    equation = num1 + "xˆ2 + " +num3 +"x + " +num2;
+    urlequation = num1 + "x2 + " +num3 +"x + " +num2;
+    } else if (emh==="m") {
+    equation = num1 + "xˆ2 + " +num3 +"x + " +num2 + " = 0";
+    urlequation = num1 + "x2 + " +num3 +"x + " +num2 +" = 0";
+    } else {
+    equation = num1 + "xˆ2 + " +num3 +"x + " +num2 + " = 0";
+    urlequation = num1 + "x2 + " +num3 +"x + " +num2 + " = 0";
+    }  document.getElementById("demo").innerHTML = equation;
+
+}
+function Trinomial () {
+    var num1 = Math.floor((Math.random() * 30) - 14);
+    var num2 = Math.floor((Math.random() * 30) - 14);
+    var num4 = num1 + num2;
+    if (num1===0) {
+        num1=5;
+    } else if (num2===0) {
+        num2=8;
+    } else if (num4===0) {
+        num1=16;
+    }
+    num4=num1+num2;
+    var num3 = num1*num2;
+    equation =  "xˆ2 + " +num4 +"x + " +num3;
+     document.getElementById("demo").innerHTML = equation;
+    urlequation =  "x2 + " +num4 +"x + " +num3;
+
+}
+function LeadCo () {
+    var num1 = Math.floor((Math.random() * 10) + 1);
+    var num2 = Math.floor((Math.random() * 20) - 5);
+    var num3 = num1*num2;
+    var num4 = randomtracker(num3);
+    var num5 = num3/num4;
+    var num6 = num4+num5;
+
+    equation = num1 + "xˆ2 + "+num6 + "x + " + num2;
+    document.getElementById("demo").innerHTML = equation;
+    urlequation =  num1 + "x2 + " +num6 + "x + " + num2;
+
+}
+function randomtracker(numb) {
+    var num2 = randomFactor(numb);
+    if (num2===0) {
+        num2 = randomFactor(numb);
+        if (num2===0){
+            num2=randomFactor(numb);
+            if (num2===0) {
+                return 1;
+            } else {
+                return num2;
+            }
+        } else {
+            return num2;
+        }
+    } else {
+        return num2;
+    }
+}
+function randomFactor(numbNumber) {
+    var divideby = Math.floor((Math.random() * 12) + 1);
+    if (numbNumber%divideby === 0) {
+        return divideby;
+        
+    } else {
+    return 0;
+    }
+}
+
+function Hard () {
+    emh = "h";
+    document.getElementById('hard').style.color = "green";
+    document.getElementById('medium').style.color = "blue";
+    document.getElementById('easy').style.color = "blue";
+
+}
+function Medium () {
+    emh = "m";
+    document.getElementById('medium').style.color = "green";
+    document.getElementById('hard').style.color = "blue";
+    document.getElementById('easy').style.color = "blue";
+
+}
+function Easy () {
+    emh = "e";
+    document.getElementById('medium').style.color = "blue";
+    document.getElementById('hard').style.color = "blue";
+    document.getElementById('easy').style.color = "green";
+
+}
+function ShowAnswer () {
+    var url;
+    if (emh==="e") {  
+    url = "https://www.mathpapa.com/factoring-calculator/?q=" + urlequation;
+    } else {
+    url = "https://www.symbolab.com/solver/quadratic-equation-solve-by-factoring-calculator/solve%20by%20factoring%20" + urlequation;
+    }
+    window.open(url);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+      
+      </script>
+ <style>
+      #seeanswer {
+text-decoration: underline;
+    color: skyblue;
+    cursor: pointer;
+}
+.link {
+   text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+#demo {
+    font-size: 40px;
+}
+      
+      
+      
+      </style>     
+      
+      
+    </body>
+</html>
