@@ -101,11 +101,11 @@ var lunch = countdownto(12,40);
  var cinco = countdownto(13,35);
  document.getElementById("4").innerHTML = cinco + "until period 6";  
  var seis = countdownto(14,30);
- document.getElementById("5").innerHTML = cinco + "until period 7";    
- if (seis==="N/A"){
+ document.getElementById("5").innerHTML = seis + "until period 7";    
+ if (seis==="N/A "){
     rightnow=7;
  }
-} else if (cinco==="N/A") {
+} else if (cinco==="N/A ") {
     rightnow=6;
 } else if (lunch==="N/A ")   {
    rightnow=5;
@@ -116,7 +116,7 @@ var lunch = countdownto(12,40);
 } else if (uno==="N/A ") {
     rightnow=2;
 } else if (beginday==="N/A "){
-    rightnow=1
+    rightnow=1;
 } else {
     rightnow=0;
 }
