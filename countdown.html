@@ -27,9 +27,7 @@
 <p id="1"></p>
 <p id="2"></p>    
 <p id="l"></p>    
-<p id="3"></p> 
-<p id="4"></p>
-<p id="5"></p>    
+<p id="3"></p>     
 </div>
 <p onclick="settings();" class="link">Settings</p>
 <div id="settings" style="display:none;position:relative;left:20px;">
@@ -37,7 +35,6 @@
 <p id="title" class="link" onclick="t();">Tab Title: Time Left in School</p>
 </div>
 <p class="link"><a style="color:inherit;" href="https://github.com/jonahtime/app/blob/main/countdown.html">Source Code</a></p>   
-<p style="color:red">Currently using first 2 days of school schedule. Click <a href="https://app.jonahtime.com/countdown/normal">here</a> for normal countdown.</p>
 
 <script>
 checkCookie();
@@ -90,44 +87,33 @@ document.title = endday + "until school is out";
 var beginday = countdownto(8,30);
  document.getElementById("begin").innerHTML = beginday + "until school starts";
 var rightnow;
-var uno = countdownto(9,25);
+var uno = countdownto(10,20);
  document.getElementById("1").innerHTML = uno + "until homeroom";
-var dos = countdownto(11,15);
- document.getElementById("2").innerHTML = dos + "until period 3";
-var tres = countdownto(12,10);
- document.getElementById("l").innerHTML = lunch + "until lunch starts";
-var lunch = countdownto(12,40);
- document.getElementById("3").innerHTML = tres + "until lunch ends";   
- var cinco = countdownto(13,35);
- document.getElementById("4").innerHTML = cinco + "until period 6";  
- var seis = countdownto(14,30);
- document.getElementById("5").innerHTML = seis + "until period 7";    
- if (seis==="N/A "){
-    rightnow=7;
- }
-} else if (cinco==="N/A ") {
-    rightnow=6;
-} else if (lunch==="N/A ")   {
+var dos = countdownto(11,25);
+ document.getElementById("2").innerHTML = dos + "until lunch starts";
+var lunch = countdownto(11,55);
+ document.getElementById("l").innerHTML = lunch + "until lunch ends";
+var tres = countdownto(13,40);
+ document.getElementById("3").innerHTML = tres + "until period 4";    
+ if (tres==="N/A ")   {
    rightnow=5;
-} else if (tres==="N/A "){
+} else if (lunch==="N/A "){
    rightnow=4;
 } else if (dos==="N/A ") {
     rightnow=3;
 } else if (uno==="N/A ") {
     rightnow=2;
 } else if (beginday==="N/A "){
-    rightnow=1;
+    rightnow=1
 } else {
     rightnow=0;
 }
     
 if (rightnow===0) { document.getElementById("next").innerHTML = beginday + "until school starts";
 } else if (rightnow===1) { document.getElementById("next").innerHTML = uno + "until homeroom";
-} else if (rightnow===2){ document.getElementById("next").innerHTML = dos + "until period 3";
-} else if (rightnow===3){ document.getElementById("next").innerHTML = tres + "until lunch starts";
-} else if (rightnow===4){ document.getElementById("next").innerHTML = lunch + "until lunch ends";    
-} else if (rightnow===5){ document.getElementById("next").innerHTML = cinco + "until period 6";    
-} else if (rightnow===6){ document.getElementById("next").innerHTML = seis + "until period 7";    
+} else if (rightnow===2){ document.getElementById("next").innerHTML = dos + "until lunch";
+} else if (rightnow===3){ document.getElementById("next").innerHTML = lunch + "until lunch ends";
+} else if (rightnow===4){ document.getElementById("next").innerHTML = tres + "until period 4";    
 } else {
 document.getElementById("next").innerHTML = "";
 }
