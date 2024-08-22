@@ -32,7 +32,7 @@
 <p>Settings:</p>
 <p id="sched" class="link" onclick="min();">Minimum Day Schedule: Off</p>
 <p id="title" class="link" onclick="t();">Tab Title: Time Left in School</p>
-<p>Current time:<span id="cur"></span>. Delay: <span id="delay"> milliseconds. </span><a class="link">Change</a></p>
+<p>Current time:<span id="cur"></span>. Delay: <span id="delay"> milliseconds. </span><a class="link" onclick="delay()">Change</a></p>
 <p class="link"><a style="color:inherit;" href="https://github.com/jonahtime/app/blob/main/countdown.html">Source Code</a></p>   
 
 <script>
@@ -46,7 +46,7 @@ document.getElementById('show').innerHTML = "Show Less";
 } else {document.getElementById("all").style.display = "none";showhide=false;
 document.getElementById('show').innerHTML = "Show All";
 }}
-function delay() {
+function del() {
     delay = Number(prompt("How many milliseconds do you want the countdown to be delayed by? (1000 millseconds=1 second)"));
 }
 
@@ -288,7 +288,7 @@ function countdownto (ch,cm){
   var now = new Date().getTime();
     
   // Find the distance between now and the count down date
-  var distance = countDownDate - now + delay;
+  var distance = (countDownDate - now)+delay;
     
   // Time calculations for days, hours, minutes and seconds
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
