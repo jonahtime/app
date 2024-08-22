@@ -29,10 +29,12 @@
 <p id="l"></p>    
 <p id="3"></p>  
 </div>
-<p>Settings:</p>
+<p id="settings" class="link" onclick="settings();">Settings:</p>
+<div style="display:none;position:relative;left:20px;"></div>
 <p id="sched" class="link" onclick="min();">Minimum Day Schedule: Off</p>
 <p id="title" class="link" onclick="t();">Tab Title: Time Left in School</p>
-<p>Current time:<span id="cur"></span>. Delay: <span id="delay"> milliseconds. </span><a class="link" onclick="del()">Change</a></p>
+</div>
+<!--<p>Current time:<span id="cur"></span>. Delay: <span id="delay"> milliseconds. </span><a class="link" onclick="del()">Change</a></p>-->
 <p class="link"><a style="color:inherit;" href="https://github.com/jonahtime/app/blob/main/countdown.html">Source Code</a></p>   
 
 <script>
@@ -55,7 +57,7 @@ function del() {
     }
 }
 
-//function settings () {if (showsettings===false){  document.getElementById("settings").style.display = "block"; showsettings=true; } else {document.getElementById("settings").style.display = "none";showsettings=false;}}
+function settings () {if (showsettings===false){  document.getElementById("settings").style.display = "block"; showsettings=true; } else {document.getElementById("settings").style.display = "none";showsettings=false;}}
 
     
     
@@ -293,7 +295,7 @@ function countdownto (ch,cm){
   var now = new Date().getTime();
     
   // Find the distance between now and the count down date
-  var distance = (countDownDate - now)+delay;
+  var distance = (countDownDate - now);
     
   // Time calculations for days, hours, minutes and seconds
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -335,7 +337,7 @@ function getCookie(cname) {
 }
 var schedule;
 var title;
-function checkCookie() {
+/*function checkCookie() {
    schedule = getCookie("schedule");
    title=getCookie("title");
    ddd=getCookie("delay");
@@ -351,7 +353,7 @@ function checkCookie() {
         setCookie("delay", 0, 100);
         delay=0;
     }
-}
+}*/
 function min () {
     if (schedule==="no") {
         setCookie("schedule","yes",1);
