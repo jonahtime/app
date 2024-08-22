@@ -85,16 +85,16 @@ if (title==="e")
 document.title = endday + "until school is out";
 }}
 var beginday = countdownto(8,30);
- document.getElementById("begin").innerHTML = beginday + "until school starts";
+ document.getElementById("begin").innerHTML = beginday + "until school starts (8:30)";
 var rightnow;
 var uno = countdownto(10,20);
- document.getElementById("1").innerHTML = uno + "until homeroom";
+ document.getElementById("1").innerHTML = uno + "until homeroom (10:20)";
 var dos = countdownto(11,25);
- document.getElementById("2").innerHTML = dos + "until lunch starts";
+ document.getElementById("2").innerHTML = dos + "until lunch starts (11:25)";
 var lunch = countdownto(11,55);
- document.getElementById("l").innerHTML = lunch + "until lunch ends";
+ document.getElementById("l").innerHTML = lunch + "until lunch ends (11:55)";
 var tres = countdownto(13,40);
- document.getElementById("3").innerHTML = tres + "until period 4";    
+ document.getElementById("3").innerHTML = tres + "until period 4 (1:40)";    
  if (tres==="N/A ")   {
    rightnow=5;
 } else if (lunch==="N/A "){
@@ -109,11 +109,11 @@ var tres = countdownto(13,40);
     rightnow=0;
 }
     
-if (rightnow===0) { document.getElementById("next").innerHTML = beginday + "until school starts";
-} else if (rightnow===1) { document.getElementById("next").innerHTML = uno + "until homeroom";
-} else if (rightnow===2){ document.getElementById("next").innerHTML = dos + "until lunch";
-} else if (rightnow===3){ document.getElementById("next").innerHTML = lunch + "until lunch ends";
-} else if (rightnow===4){ document.getElementById("next").innerHTML = tres + "until period 4";    
+if (rightnow===0) { document.getElementById("next").innerHTML = beginday + "until school starts (8:30)";
+} else if (rightnow===1) { document.getElementById("next").innerHTML = uno + "until homeroom (10:20)";
+} else if (rightnow===2){ document.getElementById("next").innerHTML = dos + "until lunch (11:25)";
+} else if (rightnow===3){ document.getElementById("next").innerHTML = lunch + "until lunch ends (11:55)";
+} else if (rightnow===4){ document.getElementById("next").innerHTML = tres + "until period 4 (1:40)";    
 } else {
 document.getElementById("next").innerHTML = "";
 }
@@ -138,14 +138,14 @@ function tues(){
      document.getElementById("end").innerHTML = endday+ "until school is out";
      // Get all the event times
      var beginday = countdownto(8,30);
-     document.getElementById("begin").innerHTML = beginday + "until school starts";
+     document.getElementById("begin").innerHTML = beginday + "until school starts (8:30)";
     var rightnow;
     var uno = countdownto(10,20);
-    document.getElementById("1").innerHTML = uno + "until period 3";
+    document.getElementById("1").innerHTML = uno + "until period 3 (10:20)";
     var dos = countdownto(12,5);
-     document.getElementById("2").innerHTML = dos + "until lunch starts";
+     document.getElementById("2").innerHTML = dos + "until lunch starts (12:05)";
     var lunch = countdownto(12,35);
-     document.getElementById("l").innerHTML = lunch + "until lunch ends";
+     document.getElementById("l").innerHTML = lunch + "until lunch ends (12:35)";
         //Figure out which period is next
     if (lunch==="N/A "){
         rightnow=4;
@@ -160,13 +160,13 @@ function tues(){
      }
      //Set the second h2 element to show the time until next event
      if (rightnow===0) {                
-         document.getElementById("next").innerHTML = beginday + "until school starts";
+         document.getElementById("next").innerHTML = beginday + "until school starts (8:30)";
     } else if (rightnow===1) { 
-        document.getElementById("next").innerHTML = uno + "until period 2";
+        document.getElementById("next").innerHTML = uno + "until period 2 (10:20)";
     } else if (rightnow===2){ 
-        document.getElementById("next").innerHTML = dos + "until lunch";
+        document.getElementById("next").innerHTML = dos + "until lunch (12:05)";
     } else if (rightnow===3){ 
-        document.getElementById("next").innerHTML = lunch + "until lunch ends";
+        document.getElementById("next").innerHTML = lunch + "until lunch ends (12:35)";
     } else {
         document.getElementById("next").innerHTML = "";
     }
@@ -178,7 +178,7 @@ function tues(){
      //If the tab title is "until next event"
      var thingtosay = document.getElementById('next').innerHTML;
      if (title==="n"){
-        if (rightnow===5) {
+        if (rightnow===4) {
             document.title = endday + " until school is out";
         }else {
             document.title=thingtosay;
@@ -194,19 +194,19 @@ function minDay(){
      if (endday==="N/A "){
          document.getElementById("end").innerHTML =  "School is out!";
     } else {
-        document.getElementById("end").innerHTML = endday + "until school is out";
+        document.getElementById("end").innerHTML = endday + "until school is out (1:00)";
         // Get all the event times
      var beginday = countdownto(8,30);
-     document.getElementById("begin").innerHTML = beginday + "until school starts";
+     document.getElementById("begin").innerHTML = beginday + "until school starts (8:30)";
     var rightnow;
     var uno = countdownto(9,35);
-    document.getElementById("1").innerHTML = uno + "until homeroom";
+    document.getElementById("1").innerHTML = uno + "until homeroom (9:35)";
     var dos = countdownto(10,35);
-     document.getElementById("2").innerHTML = dos + "until lunch starts";
+     document.getElementById("2").innerHTML = dos + "until lunch starts (10:35)";
     var lunch = countdownto(10,50);
-     document.getElementById("l").innerHTML = lunch + "until lunch ends";
+     document.getElementById("l").innerHTML = lunch + "until lunch ends (10:50)";
     var tres = countdownto(11,55);
-      document.getElementById("3").innerHTML = tres + "until period 4";
+      document.getElementById("3").innerHTML = tres + "until period 4 (11:55)";
       //Figure out which period is next
      if (tres==="N/A ")   {
         rightnow=5;
@@ -223,15 +223,15 @@ function minDay(){
      }
      //Set the second h2 element to show the time until next event
      if (rightnow===0) {                
-         document.getElementById("next").innerHTML = beginday + "until school starts";
+         document.getElementById("next").innerHTML = beginday + "until school starts (8:30)";
     } else if (rightnow===1) { 
-        document.getElementById("next").innerHTML = uno + "until homeroom";
+        document.getElementById("next").innerHTML = uno + "until homeroom (9:35)";
     } else if (rightnow===2){ 
-        document.getElementById("next").innerHTML = dos + "until lunch";
+        document.getElementById("next").innerHTML = dos + "until lunch (10:35)";
     } else if (rightnow===3){ 
-        document.getElementById("next").innerHTML = lunch + "until lunch ends";
+        document.getElementById("next").innerHTML = lunch + "until lunch ends (10:50)";
     } else if (rightnow===4){ 
-        document.getElementById("next").innerHTML = tres + "until period 4";    
+        document.getElementById("next").innerHTML = tres + "until period 4 (11:55)";    
     } else {
         document.getElementById("next").innerHTML = "";
     }
