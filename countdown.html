@@ -40,14 +40,19 @@ checkCookie();
 getSched();
 var showhide = false;
 var showsettings;
-
+var delay;
 function show () {if (showhide===false){  document.getElementById("all").style.display = "block"; showhide=true;
 document.getElementById('show').innerHTML = "Show Less";
 } else {document.getElementById("all").style.display = "none";showhide=false;
 document.getElementById('show').innerHTML = "Show All";
 }}
 function del() {
-    delay = Number(prompt("How many milliseconds do you want the countdown to be delayed by? (1000 millseconds=1 second)"));
+    var p = prompt("How many milliseconds do you want the countdown to be delayed by? (1000 millseconds=1 second)", delay);
+    if (typeof(p)==='number') {
+        delay=p;
+    } else {
+        alert("Invalid. Must enter numerical value.");
+    }
 }
 
 //function settings () {if (showsettings===false){  document.getElementById("settings").style.display = "block"; showsettings=true; } else {document.getElementById("settings").style.display = "none";showsettings=false;}}
@@ -330,7 +335,6 @@ function getCookie(cname) {
 }
 var schedule;
 var title;
-var delay;
 function checkCookie() {
    schedule = getCookie("schedule");
    title=getCookie("title");
