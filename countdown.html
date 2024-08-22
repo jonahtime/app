@@ -27,27 +27,30 @@
 <p id="1"></p>
 <p id="2"></p>    
 <p id="l"></p>    
-<p id="3"></p>     
+<p id="3"></p>  
 </div>
-<p onclick="settings();" class="link">Settings</p>
-<div id="settings" style="display:none;position:relative;left:20px;">
+<p>Settings:</p>
 <p id="sched" class="link" onclick="min();">Minimum Day Schedule: Off</p>
 <p id="title" class="link" onclick="t();">Tab Title: Time Left in School</p>
-</div>
+<p>Current time:<span id="cur"></span>. Delay: <span id="delay"> milliseconds. </span><a class="link">Change</a></p>
 <p class="link"><a style="color:inherit;" href="https://github.com/jonahtime/app/blob/main/countdown.html">Source Code</a></p>   
 
 <script>
 checkCookie();
 getSched();
 var showhide = false;
-var showsettings
+var showsettings;
+
 function show () {if (showhide===false){  document.getElementById("all").style.display = "block"; showhide=true;
 document.getElementById('show').innerHTML = "Show Less";
 } else {document.getElementById("all").style.display = "none";showhide=false;
 document.getElementById('show').innerHTML = "Show All";
 }}
+function delay() {
+    delay = Number(prompt("How many milliseconds do you want the countdown to be delayed by? (1000 millseconds=1 second)"));
+}
 
-function settings () {if (showsettings===false){  document.getElementById("settings").style.display = "block"; showsettings=true; } else {document.getElementById("settings").style.display = "none";showsettings=false;}}
+//function settings () {if (showsettings===false){  document.getElementById("settings").style.display = "block"; showsettings=true; } else {document.getElementById("settings").style.display = "none";showsettings=false;}}
 
     
     
@@ -71,6 +74,17 @@ function getSched(){
     } else { 
         document.getElementById("title").innerHTML = "Tab Title: None";
     }
+}
+function getCurTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('cur').innerHTML =  h + ":" + m + ":" + s;
+  document.getElementById('delay').innerHTML = delay;
+  setTimeout(startTime, 1000);
 }
 function getCounts() {
  var endday = countdownto(15,25);
@@ -274,7 +288,7 @@ function countdownto (ch,cm){
   var now = new Date().getTime();
     
   // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+  var distance = countDownDate - now + delay;
     
   // Time calculations for days, hours, minutes and seconds
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -316,9 +330,11 @@ function getCookie(cname) {
 }
 var schedule;
 var title;
+var delay;
 function checkCookie() {
    schedule = getCookie("schedule");
    title=getCookie("title");
+   delay=getCookie("delay")
     if(schedule===""){
         setCookie("schedule","no",1);
         schedule="no";
@@ -326,6 +342,10 @@ function checkCookie() {
     if (title===""){
         setCookie("title", "e",100);
         title ="e";
+    }
+    if (delay===""){
+        setCookie("delay", 0, 100);
+        delay=0;
     }
 }
 function min () {
