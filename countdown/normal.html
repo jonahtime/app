@@ -111,7 +111,7 @@ var tres = countdownto(13,40);
     
 if (rightnow===0) { document.getElementById("next").innerHTML = beginday + "until school starts (8:30)";
 } else if (rightnow===1) { document.getElementById("next").innerHTML = uno + "until homeroom (10:20)";
-} else if (rightnow===2){ document.getElementById("next").innerHTML = dos + "until lunch (11:20)";
+} else if (rightnow===2){ document.getElementById("next").innerHTML = dos + "until lunch (11:25)";
 } else if (rightnow===3){ document.getElementById("next").innerHTML = lunch + "until lunch ends (11:55)";
 } else if (rightnow===4){ document.getElementById("next").innerHTML = tres + "until period 4 (1:40)";    
 } else {
@@ -143,7 +143,7 @@ function tues(){
     var uno = countdownto(10,20);
     document.getElementById("1").innerHTML = uno + "until period 3 (10:20)";
     var dos = countdownto(12,5);
-     document.getElementById("2").innerHTML = dos + "until lunch starts (12:05)";
+     document.getElementById("2").innerHTML = dos + "until lunch (12:05)";
     var lunch = countdownto(12,35);
      document.getElementById("l").innerHTML = lunch + "until lunch ends (12:35)";
         //Figure out which period is next
@@ -162,7 +162,7 @@ function tues(){
      if (rightnow===0) {                
          document.getElementById("next").innerHTML = beginday + "until school starts (8:30)";
     } else if (rightnow===1) { 
-        document.getElementById("next").innerHTML = uno + "until period 2 (10:20)";
+        document.getElementById("next").innerHTML = uno + "until period 3 (10:20)";
     } else if (rightnow===2){ 
         document.getElementById("next").innerHTML = dos + "until lunch (12:05)";
     } else if (rightnow===3){ 
@@ -178,7 +178,7 @@ function tues(){
      //If the tab title is "until next event"
      var thingtosay = document.getElementById('next').innerHTML;
      if (title==="n"){
-        if (rightnow===5) {
+        if (rightnow===4) {
             document.title = endday + " until school is out";
         }else {
             document.title=thingtosay;
