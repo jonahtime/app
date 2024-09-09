@@ -35,7 +35,6 @@
 <p id="title" class="link" onclick="t();">Tab Title: Time Left in School</p>
 </div>
 <p class="link"><a style="color:inherit;" href="https://github.com/jonahtime/app/blob/main/countdown.html">Source Code</a></p>   
-<p style="color:red;">Club rush day schedule with extended lunch. Click <a href="https://app.jonahtime.com/countdown/normal">here</a> for normal schedule.</p>
 
 <script>
 checkCookie();
@@ -90,10 +89,10 @@ var beginday = countdownto(8,30);
 var rightnow;
 var uno = countdownto(10,20);
  document.getElementById("1").innerHTML = uno + "until homeroom (10:20)";
-var dos = countdownto(11,20);
- document.getElementById("2").innerHTML = dos + "until lunch starts (11:20)";
-var lunch = countdownto(12,5);
- document.getElementById("l").innerHTML = lunch + "until lunch ends (12:05)";
+var dos = countdownto(11,25);
+ document.getElementById("2").innerHTML = dos + "until lunch starts (11:25)";
+var lunch = countdownto(11,55);
+ document.getElementById("l").innerHTML = lunch + "until lunch ends (11:55)";
 var tres = countdownto(13,40);
  document.getElementById("3").innerHTML = tres + "until period 4 (1:40)";    
  if (tres==="N/A ")   {
@@ -112,8 +111,8 @@ var tres = countdownto(13,40);
     
 if (rightnow===0) { document.getElementById("next").innerHTML = beginday + "until school starts (8:30)";
 } else if (rightnow===1) { document.getElementById("next").innerHTML = uno + "until homeroom (10:20)";
-} else if (rightnow===2){ document.getElementById("next").innerHTML = dos + "until lunch (11:20)";
-} else if (rightnow===3){ document.getElementById("next").innerHTML = lunch + "until lunch ends (12:05)";
+} else if (rightnow===2){ document.getElementById("next").innerHTML = dos + "until lunch (11:25)";
+} else if (rightnow===3){ document.getElementById("next").innerHTML = lunch + "until lunch ends (11:55)";
 } else if (rightnow===4){ document.getElementById("next").innerHTML = tres + "until period 4 (1:40)";    
 } else {
 document.getElementById("next").innerHTML = "";
