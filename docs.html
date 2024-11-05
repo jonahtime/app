@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Notes</title>
+  </head>
+  <body>
+    <textarea rows=20 style="width:100%;" id="text" autofocus></textarea>
+    <script>
+        checkCookie();
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    let ztext = getCookie('text');
+    let text = ztext.replace(/%0A/gm, "\n");
+    document.getElementById('text').value = text; 
+}
+setInterval(setCookie1,1000)
+function setCookie1() {
+    var ztext = document.getElementById('text').value;
+    var text = ztext.replace(/(\r\n|\n|\r)/gm, "%0A");
+    console.log(text);
+}
+</script>
+</body>
+</html>
