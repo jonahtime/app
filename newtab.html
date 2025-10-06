@@ -57,8 +57,14 @@
             let newMode=getCookie('mode');
             setCookie('day',dayoftheweek,365);
             setCookie('hour',hour,365);
-            let url = 'https://www.jonahtime.com/newtab/' + cmode;
-            window.location.assign(url);}
+            var url;
+            if (cmode==='grind') {
+                url="https://docs.google.com/spreadsheets/d/1-7CKOL90qi1r9F_L9M78AaQKJv698_tfMP39qhti_uc/edit?gid=0#gid=0"
+            else {
+                url = 'https://www.jonahtime.com/newtab/' + cmode;
+            }
+            window.location.assign(url);
+        }
     </script>
 </body>
 </html>
