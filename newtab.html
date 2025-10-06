@@ -38,6 +38,7 @@
         const forceqmark = urlParams.has('forceMode'); 
         if(forceqmark===true) {
             const forceMode = urlParams.get('forceMode');
+            alert(forceMode);
             setMode(forceMode);
         } else {
             if (Number(lastday)===dayoftheweek) {
