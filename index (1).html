@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Morning Routine</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      background: #111;
+      color: white;
+    }
+
+    /* ============================================================
+       BACKGROUND
+       ============================================================ */
+
+    #background {
+      position: fixed;
+      inset: 0;
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      z-index: 0;
+    }
+
+    #overlay {
+      position: fixed;
+      inset: 0;
+
+      background: rgba(0, 0, 0, 0.25);
+
+      z-index: 1;
+    }
+
+    /* ============================================================
+       MAIN SCENE
+       ============================================================ */
+
+    #scene {
+      position: relative;
+
+      z-index: 2;
+
+      width: 100%;
+      height: 100%;
+
+      transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .center-content {
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+    }
+
+    .content {
+      width: min(850px, 90vw);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      gap: 35px;
+    }
+
+    /* ============================================================
+       GREETING
+       ============================================================ */
+
+    #greeting {
+      font-size: clamp(3rem, 7vw, 6rem);
+
+      font-weight: 500;
+
+      letter-spacing: -0.04em;
+
+      text-shadow:
+        0 2px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    /* ============================================================
+       TITLES
+       ============================================================ */
+
+    .scene-title {
+      margin: 0;
+
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+
+      font-weight: 500;
+
+      letter-spacing: -0.04em;
+
+      text-shadow:
+        0 2px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    /* ============================================================
+       SLEEP RATING
+       ============================================================ */
+
+    #stars {
+      display: flex;
+
+      gap: 12px;
+    }
+
+    .star {
+      border: none;
+
+      background: transparent;
+
+      padding: 0;
+
+      color: rgba(255, 255, 255, 0.4);
+
+      font-size: clamp(3rem, 6vw, 5rem);
+
+      line-height: 1;
+
+      cursor: pointer;
+
+      transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+    }
+
+    .star:hover {
+      transform: scale(1.12);
+    }
+
+    .star.selected {
+      color: #ffd85c;
+    }
+
+    /* ============================================================
+       GOAL INPUT
+       ============================================================ */
+
+    #goal-input {
+      width: 100%;
+
+      min-height: 160px;
+
+      padding: 22px 25px;
+
+      resize: none;
+
+      border: none;
+
+      outline: none;
+
+      border-radius: 18px;
+
+      font-family: inherit;
+
+      font-size: 1.35rem;
+
+      line-height: 1.5;
+
+      color: #222;
+
+      background: rgba(255, 255, 255, 0.92);
+
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    #goal-input:focus {
+      background: white;
+    }
+
+    #goal-input::placeholder {
+      color: #777;
+    }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+
+    .action-button {
+      border: none;
+
+      padding: 13px 28px;
+
+      border-radius: 999px;
+
+      font-family: inherit;
+
+      font-size: 1rem;
+
+      font-weight: 500;
+
+      color: white;
+
+      background: rgba(255, 255, 255, 0.2);
+
+      backdrop-filter: blur(10px);
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .action-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       TODAY'S GOAL
+       ============================================================ */
+
+    #main-screen {
+      position: absolute;
+
+      inset: 0;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+    }
+
+    #daily-goal {
+      width: min(950px, 90vw);
+
+      padding-top: 35px;
+
+      text-align: center;
+
+      cursor: pointer;
+
+      text-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.4);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+    #daily-goal:hover {
+      transform: scale(1.02);
+    }
+
+    #daily-goal-label {
+      margin-bottom: 7px;
+
+      font-size: 0.75rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.12em;
+
+      opacity: 0.65;
+    }
+
+    #daily-goal-text {
+      font-size: 1.35rem;
+
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       ACTIVITY MENU
+       ============================================================ */
+
+    #activities {
+      position: absolute;
+
+      top: 25%;
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: min(850px, 90vw);
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 22px;
+    }
+
+    #activities-title {
+      margin: 0;
+
+      font-size: 1.15rem;
+
+      font-weight: 400;
+
+      opacity: 0.75;
+    }
+
+    #activity-buttons {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      gap: 14px;
+    }
+
+    .activity-button {
+      border: none;
+
+      min-width: 140px;
+
+      padding: 17px 25px;
+
+      border-radius: 16px;
+
+      font-family: inherit;
+
+      font-size: 1rem;
+
+      color: white;
+
+      background: rgba(255, 255, 255, 0.18);
+
+      backdrop-filter: blur(12px);
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .activity-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+
+      transform: translateY(-3px);
+    }
+
+    /* ============================================================
+       RESTART
+       ============================================================ */
+
+    #restart-button {
+      position: fixed;
+
+      right: 30px;
+
+      bottom: 30px;
+
+      z-index: 20;
+
+      border: none;
+
+      padding: 10px 18px;
+
+      border-radius: 999px;
+
+      font-family: inherit;
+
+      font-size: 0.9rem;
+
+      color: rgba(255, 255, 255, 0.8);
+
+      background: rgba(0, 0, 0, 0.2);
+
+      backdrop-filter: blur(10px);
+
+      cursor: pointer;
+
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    #restart-button:hover {
+      color: white;
+
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="background"></div>
+
+  <div id="overlay"></div>
+
+  <main id="scene"></main>
+
+
+  <script>
+
+    /* ============================================================
+       WALLPAPERS
+       ============================================================ */
+
+    const WALLPAPERS = [
+      "WSD_HS3.png"
+    ];
+
+
+    /* ============================================================
+       BASIC SETUP
+       ============================================================ */
+
+    const background =
+      document.getElementById("background");
+
+    const scene =
+      document.getElementById("scene");
+
+    let currentScene = 0;
+
+
+    /* ============================================================
+       RANDOM WALLPAPER
+       ============================================================ */
+
+    function randomWallpaper() {
+
+      const index =
+        Math.floor(
+          Math.random() *
+          WALLPAPERS.length
+        );
+
+      background.style.backgroundImage =
+        `url("${WALLPAPERS[index]}")`;
+    }
+
+    randomWallpaper();
+
+
+    /* ============================================================
+       COOKIE FUNCTIONS
+       ============================================================ */
+
+    function getCookie(name) {
+
+      const cookies =
+        document.cookie.split("; ");
+
+      const cookie =
+        cookies.find(
+          row =>
+            row.startsWith(
+              name + "="
+            )
+        );
+
+      if (!cookie) {
+        return null;
+      }
+
+      return decodeURIComponent(
+        cookie.substring(
+          name.length + 1
+        )
+      );
+    }
+
+
+    function setCookie(
+      name,
+      value,
+      days = 365
+    ) {
+
+      const expiration =
+        new Date();
+
+      expiration.setTime(
+        expiration.getTime() +
+        days *
+        24 *
+        60 *
+        60 *
+        1000
+      );
+
+      document.cookie =
+        `${name}=${encodeURIComponent(value)}; expires=${expiration.toUTCString()}; path=/; SameSite=Lax`;
+    }
+
+
+    function deleteCookie(name) {
+
+      document.cookie =
+        `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
+    }
+
+
+    /* ============================================================
+       DATE
+       ============================================================ */
+
+    function getToday() {
+
+      const date =
+        new Date();
+
+      const year =
+        date.getFullYear();
+
+      const month =
+        String(
+          date.getMonth() + 1
+        ).padStart(2, "0");
+
+      const day =
+        String(
+          date.getDate()
+        ).padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+    }
+
+
+    /* ============================================================
+       GREETING
+       ============================================================ */
+
+    function getGreeting() {
+
+      const hour =
+        new Date().getHours();
+
+      if (hour < 12) {
+        return "Good morning, Jonah";
+      }
+
+      if (hour < 17) {
+        return "Good afternoon, Jonah";
+      }
+
+      return "Good evening, Jonah";
+    }
+
+
+    /* ============================================================
+       SLEEP DATA
+       ============================================================ */
+
+    function getSleepRatings() {
+
+      const cookie =
+        getCookie(
+          "sleepRatings"
+        );
+
+      if (!cookie) {
+        return {};
+      }
+
+      try {
+        return JSON.parse(cookie);
+      } catch {
+        return {};
+      }
+    }
+
+
+    function saveSleepRating(
+      rating
+    ) {
+
+      const sleepData =
+        getSleepRatings();
+
+      sleepData[getToday()] = {
+        rating: rating,
+
+        timestamp:
+          new Date()
+            .toISOString()
+      };
+
+      setCookie(
+        "sleepRatings",
+        JSON.stringify(
+          sleepData
+        )
+      );
+    }
+
+
+    /* ============================================================
+       GOAL DATA
+       ============================================================ */
+
+    function getDailyGoals() {
+
+      const cookie =
+        getCookie(
+          "dailyGoals"
+        );
+
+      if (!cookie) {
+        return {};
+      }
+
+      try {
+        return JSON.parse(cookie);
+      } catch {
+        return {};
+      }
+    }
+
+
+    function getTodayGoal() {
+
+      const goals =
+        getDailyGoals();
+
+      const today =
+        getToday();
+
+      if (!goals[today]) {
+        return null;
+      }
+
+      return goals[today].goal;
+    }
+
+
+    function saveDailyGoal(
+      goal
+    ) {
+
+      const goals =
+        getDailyGoals();
+
+      const today =
+        getToday();
+
+      goals[today] = {
+        goal: goal,
+
+        timestamp:
+          new Date()
+            .toISOString()
+      };
+
+      setCookie(
+        "dailyGoals",
+        JSON.stringify(
+          goals
+        )
+      );
+
+      /*
+       * Separate cookie indicating
+       * today's setup is complete.
+       */
+
+      setCookie(
+        "goalCreated",
+        today
+      );
+    }
+
+
+    function hasCreatedGoalToday() {
+
+      return (
+        getCookie(
+          "goalCreated"
+        ) === getToday()
+      );
+    }
+
+
+    /* ============================================================
+       ESCAPE HTML
+       ============================================================ */
+
+    function escapeHTML(
+      text
+    ) {
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+      div.textContent =
+        text;
+
+      return div.innerHTML;
+    }
+
+
+    /* ============================================================
+       GREETING
+       ============================================================ */
+
+    function showGreeting() {
+
+      currentScene = 0;
+
+      scene.classList.add(
+        "fade-out"
+      );
+
+      setTimeout(() => {
+
+        scene.innerHTML = `
+
+          <div class="center-content">
+
+            <div id="greeting">
+              ${getGreeting()}
+            </div>
+
+          </div>
+
+        `;
+
+        scene.classList.remove(
+          "fade-out"
+        );
+
+      }, 500);
+    }
+
+
+    /* ============================================================
+       SLEEP RATING
+       ============================================================ */
+
+    function showSleepRating() {
+
+      currentScene = 1;
+
+      scene.classList.add(
+        "fade-out"
+      );
+
+      setTimeout(() => {
+
+        scene.innerHTML = `
+
+          <div class="center-content">
+
+            <div class="content">
+
+              <h1 class="scene-title">
+                How did you sleep?
+              </h1>
+
+              <div id="stars">
+
+                <button
+                  class="star"
+                  data-rating="1"
+                >★</button>
+
+                <button
+                  class="star"
+                  data-rating="2"
+                >★</button>
+
+                <button
+                  class="star"
+                  data-rating="3"
+                >★</button>
+
+                <button
+                  class="star"
+                  data-rating="4"
+                >★</button>
+
+                <button
+                  class="star"
+                  data-rating="5"
+                >★</button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+        scene.classList.remove(
+          "fade-out"
+        );
+
+        setupSleepRating();
+
+      }, 500);
+    }
+
+
+    function setupSleepRating() {
+
+      const stars =
+        document.querySelectorAll(
+          ".star"
+        );
+
+      stars.forEach(
+        star => {
+
+          star.addEventListener(
+            "mouseenter",
+            () => {
+
+              const rating =
+                Number(
+                  star.dataset.rating
+                );
+
+              stars.forEach(
+                s => {
+
+                  const value =
+                    Number(
+                      s.dataset.rating
+                    );
+
+                  s.classList.toggle(
+                    "selected",
+                    value <= rating
+                  );
+
+                }
+              );
+
+            }
+          );
+
+
+          star.addEventListener(
+            "click",
+            event => {
+
+              event.stopPropagation();
+
+              const rating =
+                Number(
+                  star.dataset.rating
+                );
+
+              saveSleepRating(
+                rating
+              );
+
+              stars.forEach(
+                s => {
+
+                  const value =
+                    Number(
+                      s.dataset.rating
+                    );
+
+                  s.classList.toggle(
+                    "selected",
+                    value <= rating
+                  );
+
+                }
+              );
+
+
+              setTimeout(
+                () => {
+                  showGoal();
+                },
+                600
+              );
+
+            }
+          );
+
+        }
+      );
+
+    }
+
+
+    /* ============================================================
+       GOAL INPUT
+       ============================================================ */
+
+    function showGoal(
+      existingGoal = ""
+    ) {
+
+      currentScene = 2;
+
+      scene.classList.add(
+        "fade-out"
+      );
+
+      setTimeout(() => {
+
+        const editing =
+          Boolean(
+            existingGoal
+          );
+
+        scene.innerHTML = `
+
+          <div class="center-content">
+
+            <div class="content">
+
+              <h1 class="scene-title">
+
+                ${
+                  editing
+                    ? "Edit your goal"
+                    : "What's your goal for today?"
+                }
+
+              </h1>
+
+              <textarea
+                id="goal-input"
+                maxlength="500"
+                placeholder="Write your goal..."
+              ></textarea>
+
+              <button
+                id="goal-submit"
+                class="action-button"
+              >
+
+                ${
+                  editing
+                    ? "Save"
+                    : "Continue"
+                }
+
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+
+        const input =
+          document.getElementById(
+            "goal-input"
+          );
+
+        const button =
+          document.getElementById(
+            "goal-submit"
+          );
+
+
+        input.value =
+          existingGoal;
+
+
+        scene.classList.remove(
+          "fade-out"
+        );
+
+        input.focus();
+
+
+        function submitGoal() {
+
+          const goal =
+            input.value.trim();
+
+          if (!goal) {
+            input.focus();
+            return;
+          }
+
+          saveDailyGoal(
+            goal
+          );
+
+          showMainScreen(
+            goal
+          );
+        }
+
+
+        button.addEventListener(
+          "click",
+          event => {
+
+            event.stopPropagation();
+
+            submitGoal();
+
+          }
+        );
+
+
+        /*
+         * Enter submits.
+         * Shift + Enter = new line.
+         */
+
+        input.addEventListener(
+          "keydown",
+          event => {
+
+            if (
+              event.key === "Enter" &&
+              !event.shiftKey
+            ) {
+
+              event.preventDefault();
+
+              submitGoal();
+
+            }
+
+          }
+        );
+
+      }, 500);
+    }
+
+
+    /* ============================================================
+       MAIN SCREEN
+       ============================================================ */
+
+    function showMainScreen(
+      goal
+    ) {
+
+      currentScene = 3;
+
+      scene.classList.add(
+        "fade-out"
+      );
+
+      setTimeout(() => {
+
+        scene.innerHTML = `
+
+          <div id="main-screen">
+
+            <!-- Today's Goal -->
+
+            <div
+              id="daily-goal"
+              title="Click to edit"
+            >
+
+              <div id="daily-goal-label">
+                Today's Goal
+              </div>
+
+              <div id="daily-goal-text">
+                ${escapeHTML(goal)}
+              </div>
+
+            </div>
+
+
+          <button
+            id="restart-button"
+          >
+            Restart
+          </button>
+
+        `;
+
+
+        scene.classList.remove(
+          "fade-out"
+        );
+
+
+        setupMainScreen();
+
+      }, 500);
+    }
+
+
+    /* ============================================================
+       MAIN SCREEN INTERACTIONS
+       ============================================================ */
+
+    function setupMainScreen() {
+
+      /*
+       * Today's Goal → edit
+       */
+
+      document
+        .getElementById(
+          "daily-goal"
+        )
+        .addEventListener(
+          "click",
+          event => {
+
+            event.stopPropagation();
+
+            showGoal(
+              getTodayGoal() || ""
+            );
+
+          }
+        );
+
+
+      /*
+       * Restart
+       */
+
+      document
+        .getElementById(
+          "restart-button"
+        )
+        .addEventListener(
+          "click",
+          event => {
+
+            event.stopPropagation();
+
+            const confirmed =
+              window.confirm(
+                "Are you sure you want to restart your morning routine?"
+              );
+
+            if (confirmed) {
+              restartRoutine();
+            }
+
+          }
+        );
+
+
+      /*
+       * Instagram
+       */
+
+      document
+        .getElementById(
+          "instagram-button"
+        )
+        .addEventListener(
+          "click",
+          event => {
+
+            event.stopPropagation();
+
+            openInstagram();
+
+          }
+        );
+
+
+      /*
+       * Placeholder buttons
+       */
+
+      document
+        .getElementById(
+          "news-button"
+        )
+        .addEventListener(
+          "click",
+          event => {
+
+            event.stopPropagation();
+
+            alert(
+              "News will go here."
+            );
+
+          }
+        );
+
+
+      document
+        .getElementById(
+          "calendar-button"
+        )
+        .addEventListener(
+          "click",
+          event => {
+
+            event.stopPropagation();
+
+            alert(
+              "Calendar will go here."
+            );
+
+          }
+        );
+
+
+      document
+        .getElementById(
+          "messages-button"
+        )
+        .addEventListener(
+          "click",
+          event => {
+
+            event.stopPropagation();
+
+            alert(
+              "Messages will go here."
+            );
+
+          }
+        );
+
+
+      document
+        .getElementById(
+          "weather-button"
+        )
+        .addEventListener(
+          "click",
+          event => {
+
+            event.stopPropagation();
+
+            alert(
+              "Weather will go here."
+            );
+
+          }
+        );
+
+    }
+
+
+    /* ============================================================
+       INSTAGRAM
+       ============================================================ */
+
+function openInstagram() {
+  window.open(
+    "https://www.instagram.com/notifications/",
+    "instagramNotifications",
+    "width=500,height=800,left=100,top=50,resizable=yes,scrollbars=yes"
+  );
+}
+
+    /* ============================================================
+       RESTART
+       ============================================================ */
+
+    function restartRoutine() {
+
+      const goals =
+        getDailyGoals();
+
+      const today =
+        getToday();
+
+      delete goals[today];
+
+
+      if (
+        Object.keys(
+          goals
+        ).length === 0
+      ) {
+
+        deleteCookie(
+          "dailyGoals"
+        );
+
+      } else {
+
+        setCookie(
+          "dailyGoals",
+          JSON.stringify(
+            goals
+          )
+        );
+
+      }
+
+
+      deleteCookie(
+        "goalCreated"
+      );
+
+
+      showGreeting();
+
+    }
+
+
+    /* ============================================================
+       GREETING CLICK
+       ============================================================ */
+
+    document.addEventListener(
+      "click",
+      () => {
+
+        if (
+          currentScene === 0
+        ) {
+
+          showSleepRating();
+
+        }
+
+      }
+    );
+
+
+    /* ============================================================
+       STARTUP
+       ============================================================ */
+
+    function initialize() {
+
+      /*
+       * If today's goal already exists,
+       * skip the setup screens.
+       */
+
+      if (
+        hasCreatedGoalToday()
+      ) {
+
+        const goal =
+          getTodayGoal();
+
+        if (goal) {
+
+          showMainScreen(
+            goal
+          );
+
+          return;
+
+        }
+
+        /*
+         * Safety fallback.
+         */
+
+        deleteCookie(
+          "goalCreated"
+        );
+
+      }
+
+
+      showGreeting();
+
+    }
+
+
+    initialize();
+
+  </script>
+
+</body>
+</html>
