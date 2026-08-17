@@ -281,13 +281,13 @@
     }
 
     /* ============================================================
-       TODAY'S GOAL
+       TODAY'S GOAL — BOTTOM
        ============================================================ */
 
     #daily-goal {
       position: absolute;
 
-      top: 9%;
+      bottom: 9%;
       left: 50%;
 
       transform:
@@ -339,14 +339,14 @@
     }
 
     /* ============================================================
-       PROJECTS WIDGET
+       PROJECTS — TOP LEFT
        ============================================================ */
 
     #projects-widget {
       position: absolute;
 
       left: 30px;
-      bottom: 30px;
+      top: 30px;
 
       width:
         min(300px, 27vw);
@@ -372,14 +372,14 @@
     }
 
     /* ============================================================
-       DODGERS WIDGET
+       DODGERS — TOP RIGHT
        ============================================================ */
 
     #dodgers-widget {
       position: absolute;
 
       right: 30px;
-      bottom: 30px;
+      top: 30px;
 
       width:
         min(300px, 27vw);
@@ -586,6 +586,14 @@
        EMBEDDED RECAP VIDEO
        ============================================================ */
 
+    #dodgers-popup-video-wrapper {
+      width: 82%;
+
+      max-width: 760px;
+
+      margin: 0 auto;
+    }
+
     #dodgers-popup-video {
       width: 100%;
 
@@ -600,14 +608,6 @@
       display: block;
     }
 
-    #dodgers-popup-video-wrapper {
-      width: 100%;
-
-      display: flex;
-
-      justify-content: center;
-    }
-
     #dodgers-video-loading {
       width: 100%;
 
@@ -620,11 +620,13 @@
       align-items: center;
       justify-content: center;
 
-      background: rgba(255,255,255,.04);
+      background:
+        rgba(255, 255, 255, 0.04);
 
-      color: rgba(255,255,255,.55);
+      color:
+        rgba(255, 255, 255, 0.55);
 
-      font-size: .95rem;
+      font-size: 0.95rem;
     }
 
     /* ============================================================
@@ -632,7 +634,12 @@
        ============================================================ */
 
     #dodgers-popup-recap {
-      margin-top: 14px;
+      width: 82%;
+
+      max-width: 760px;
+
+      margin:
+        14px auto 0;
     }
 
     #dodgers-recap-title {
@@ -668,19 +675,19 @@
       text-decoration: none;
 
       background:
-        rgba(255,255,255,.08);
+        rgba(255, 255, 255, 0.08);
 
-      font-size: .85rem;
+      font-size: 0.85rem;
 
       line-height: 1.3;
 
       transition:
-        background .2s ease;
+        background 0.2s ease;
     }
 
     #dodgers-recap-link:hover {
       background:
-        rgba(255,255,255,.16);
+        rgba(255, 255, 255, 0.16);
     }
 
     /* ============================================================
@@ -716,15 +723,15 @@
       font-size: 0.85rem;
 
       background:
-        rgba(255,255,255,.1);
+        rgba(255, 255, 255, 0.1);
 
       transition:
-        background .2s ease;
+        background 0.2s ease;
     }
 
     .dodgers-popup-link:hover {
       background:
-        rgba(255,255,255,.18);
+        rgba(255, 255, 255, 0.18);
     }
 
     /* ============================================================
@@ -747,7 +754,7 @@
       color: white;
 
       background:
-        rgba(255,255,255,.1);
+        rgba(255, 255, 255, 0.1);
 
       font-size: 1.1rem;
 
@@ -758,7 +765,7 @@
 
     #dodgers-popup-close:hover {
       background:
-        rgba(255,255,255,.2);
+        rgba(255, 255, 255, 0.2);
     }
 
     /* ============================================================
@@ -843,7 +850,7 @@
 
       border:
         1px solid
-        rgba(255,255,255,.1);
+        rgba(255, 255, 255, 0.1);
 
       border-radius: 9px;
 
@@ -854,12 +861,12 @@
       color: white;
 
       background:
-        rgba(255,255,255,.07);
+        rgba(255, 255, 255, 0.07);
     }
 
     .edit-input:focus {
       border-color:
-        rgba(255,255,255,.3);
+        rgba(255, 255, 255, 0.3);
     }
 
     .delete-item {
@@ -870,10 +877,10 @@
       border-radius: 9px;
 
       color:
-        rgba(255,255,255,.7);
+        rgba(255, 255, 255, 0.7);
 
       background:
-        rgba(255,255,255,.07);
+        rgba(255, 255, 255, 0.07);
 
       cursor: pointer;
     }
@@ -882,7 +889,7 @@
       color: white;
 
       background:
-        rgba(255,90,90,.25);
+        rgba(255, 90, 90, 0.25);
     }
 
     #add-item {
@@ -894,12 +901,12 @@
 
       border:
         1px dashed
-        rgba(255,255,255,.18);
+        rgba(255, 255, 255, 0.18);
 
       border-radius: 9px;
 
       color:
-        rgba(255,255,255,.75);
+        rgba(255, 255, 255, 0.75);
 
       background: transparent;
 
@@ -908,7 +915,7 @@
 
     #add-item:hover {
       background:
-        rgba(255,255,255,.06);
+        rgba(255, 255, 255, 0.06);
     }
 
     .editor-actions {
@@ -944,10 +951,10 @@
       font-size: 0.78rem;
 
       color:
-        rgba(255,255,255,.75);
+        rgba(255, 255, 255, 0.75);
 
       background:
-        rgba(0,0,0,.25);
+        rgba(0, 0, 0, 0.25);
 
       backdrop-filter: blur(10px);
 
@@ -958,7 +965,7 @@
       color: white;
 
       background:
-        rgba(0,0,0,.4);
+        rgba(0, 0, 0, 0.4);
     }
 
     /* ============================================================
@@ -970,7 +977,10 @@
       #main-screen {
         overflow-y: auto;
 
-        padding-bottom: 70px;
+        padding:
+          20px
+          16px
+          70px;
       }
 
       #daily-goal {
@@ -978,12 +988,13 @@
 
         top: auto;
         left: auto;
+        bottom: auto;
 
         transform: none;
 
         width: 100%;
 
-        margin-bottom: 25px;
+        margin-top: 30px;
       }
 
       #daily-goal:hover {
@@ -994,6 +1005,7 @@
       #dodgers-widget {
         position: relative;
 
+        top: auto;
         left: auto;
         right: auto;
         bottom: auto;
@@ -1015,6 +1027,11 @@
         padding: 18px;
       }
 
+      #dodgers-popup-video-wrapper,
+      #dodgers-popup-recap {
+        width: 100%;
+      }
+
       #dodgers-popup-links {
         left: 18px;
         right: 18px;
@@ -1026,7 +1043,6 @@
       }
 
     }
-
   </style>
 </head>
 
@@ -1049,21 +1065,16 @@
       "WSD_HS3.png"
     ];
 
-
     const DEFAULT_PROJECTS = [
-
       {
         title: "Project 1",
         url: "https://example.com"
       },
-
       {
         title: "Project 2",
         url: "https://example.com"
       }
-
     ];
-
 
     /*
      * Cloudflare Worker endpoint.
@@ -1078,12 +1089,10 @@
         "background"
       );
 
-
     const scene =
       document.getElementById(
         "scene"
       );
-
 
     let currentScene = 0;
 
@@ -1100,12 +1109,9 @@
           WALLPAPERS.length
         );
 
-
       background.style.backgroundImage =
         `url("${WALLPAPERS[index]}")`;
-
     }
-
 
     randomWallpaper();
 
@@ -1114,13 +1120,10 @@
        COOKIE FUNCTIONS
        ============================================================ */
 
-    function getCookie(
-      name
-    ) {
+    function getCookie(name) {
 
       const cookies =
         document.cookie.split("; ");
-
 
       const cookie =
         cookies.find(
@@ -1130,20 +1133,15 @@
             )
         );
 
-
       if (!cookie) {
-
         return null;
-
       }
-
 
       return decodeURIComponent(
         cookie.substring(
           name.length + 1
         )
       );
-
     }
 
 
@@ -1156,7 +1154,6 @@
       const expiration =
         new Date();
 
-
       expiration.setTime(
         expiration.getTime() +
         days *
@@ -1166,22 +1163,17 @@
         1000
       );
 
-
       document.cookie =
         `${name}=${encodeURIComponent(
           value
         )}; expires=${expiration.toUTCString()}; path=/; SameSite=Lax`;
-
     }
 
 
-    function deleteCookie(
-      name
-    ) {
+    function deleteCookie(name) {
 
       document.cookie =
         `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
-
     }
 
 
@@ -1194,25 +1186,20 @@
       const date =
         new Date();
 
-
       const year =
         date.getFullYear();
-
 
       const month =
         String(
           date.getMonth() + 1
         ).padStart(2, "0");
 
-
       const day =
         String(
           date.getDate()
         ).padStart(2, "0");
 
-
       return `${year}-${month}-${day}`;
-
     }
 
 
@@ -1225,23 +1212,15 @@
       const hour =
         new Date().getHours();
 
-
       if (hour < 12) {
-
         return "Good morning, Jonah";
-
       }
-
 
       if (hour < 17) {
-
         return "Good afternoon, Jonah";
-
       }
 
-
       return "Good evening, Jonah";
-
     }
 
 
@@ -1256,26 +1235,17 @@
           "sleepRatings"
         );
 
-
       if (!cookie) {
-
         return {};
-
       }
 
-
       try {
-
         return JSON.parse(
           cookie
         );
-
       } catch {
-
         return {};
-
       }
-
     }
 
 
@@ -1286,25 +1256,18 @@
       const data =
         getSleepRatings();
 
-
       data[getToday()] = {
-
         rating,
 
         timestamp:
           new Date()
             .toISOString()
-
       };
-
 
       setCookie(
         "sleepRatings",
-        JSON.stringify(
-          data
-        )
+        JSON.stringify(data)
       );
-
     }
 
 
@@ -1319,26 +1282,17 @@
           "dailyGoals"
         );
 
-
       if (!cookie) {
-
         return {};
-
       }
 
-
       try {
-
         return JSON.parse(
           cookie
         );
-
       } catch {
-
         return {};
-
       }
-
     }
 
 
@@ -1347,16 +1301,13 @@
       const goals =
         getDailyGoals();
 
-
       const today =
         getToday();
-
 
       return (
         goals[today]?.goal ||
         null
       );
-
     }
 
 
@@ -1367,10 +1318,8 @@
       const goals =
         getDailyGoals();
 
-
       const today =
         getToday();
-
 
       goals[today] = {
 
@@ -1379,17 +1328,12 @@
         timestamp:
           new Date()
             .toISOString()
-
       };
-
 
       setCookie(
         "dailyGoals",
-        JSON.stringify(
-          goals
-        )
+        JSON.stringify(goals)
       );
-
 
       /*
        * Entering today's goal completes
@@ -1400,7 +1344,6 @@
         "goalCreated",
         today
       );
-
     }
 
 
@@ -1412,7 +1355,6 @@
         ) ===
         getToday()
       );
-
     }
 
 
@@ -1427,7 +1369,6 @@
           "morning-projects"
         );
 
-
       if (!cookie) {
 
         return DEFAULT_PROJECTS
@@ -1436,9 +1377,7 @@
               ...project
             })
           );
-
       }
-
 
       try {
 
@@ -1454,9 +1393,7 @@
               ...project
             })
           );
-
       }
-
     }
 
 
@@ -1466,11 +1403,8 @@
 
       setCookie(
         "morning-projects",
-        JSON.stringify(
-          projects
-        )
+        JSON.stringify(projects)
       );
-
     }
 
 
@@ -1487,13 +1421,10 @@
           "div"
         );
 
-
       div.textContent =
         text;
 
-
       return div.innerHTML;
-
     }
 
 
@@ -1510,26 +1441,20 @@
         "fade-out"
       );
 
-
       setTimeout(() => {
 
         scene.innerHTML =
           html;
 
-
         scene.classList.remove(
           "fade-out"
         );
 
-
         if (callback) {
-
           callback();
-
         }
 
       }, 500);
-
     }
 
 
@@ -1540,7 +1465,6 @@
     function showGreeting() {
 
       currentScene = 0;
-
 
       transitionTo(`
 
@@ -1555,7 +1479,6 @@
         </div>
 
       `);
-
     }
 
 
@@ -1567,7 +1490,6 @@
 
       currentScene = 1;
 
-
       transitionTo(`
 
         <div class="center-content">
@@ -1578,7 +1500,6 @@
               How did you sleep?
             </h1>
 
-
             <div id="stars">
 
               <button
@@ -1588,14 +1509,12 @@
                 ★
               </button>
 
-
               <button
                 class="star"
                 data-rating="2"
               >
                 ★
               </button>
-
 
               <button
                 class="star"
@@ -1604,14 +1523,12 @@
                 ★
               </button>
 
-
               <button
                 class="star"
                 data-rating="4"
               >
                 ★
               </button>
-
 
               <button
                 class="star"
@@ -1627,7 +1544,6 @@
         </div>
 
       `, setupSleepRating);
-
     }
 
 
@@ -1637,7 +1553,6 @@
         document.querySelectorAll(
           ".star"
         );
-
 
       stars.forEach(
         star => {
@@ -1651,7 +1566,6 @@
                   star.dataset.rating
                 );
 
-
               stars.forEach(
                 s => {
 
@@ -1661,12 +1575,10 @@
                     Number(
                       s.dataset.rating
                     ) <= rating
-
                   );
 
                 }
               );
-
             }
           );
 
@@ -1677,17 +1589,14 @@
 
               event.stopPropagation();
 
-
               const rating =
                 Number(
                   star.dataset.rating
                 );
 
-
               saveSleepRating(
                 rating
               );
-
 
               stars.forEach(
                 s => {
@@ -1698,24 +1607,20 @@
                     Number(
                       s.dataset.rating
                     ) <= rating
-
                   );
 
                 }
               );
 
-
               setTimeout(
                 showGoal,
                 600
               );
-
             }
           );
 
         }
       );
-
     }
 
 
@@ -1729,12 +1634,10 @@
 
       currentScene = 2;
 
-
       const editing =
         Boolean(
           existingGoal
         );
-
 
       transitionTo(`
 
@@ -1752,13 +1655,11 @@
 
             </h1>
 
-
             <textarea
               id="goal-input"
               maxlength="500"
               placeholder="Write your goal..."
             ></textarea>
-
 
             <button
               id="goal-submit"
@@ -1784,16 +1685,13 @@
             "goal-input"
           );
 
-
         const button =
           document.getElementById(
             "goal-submit"
           );
 
-
         input.value =
           existingGoal;
-
 
         input.focus();
 
@@ -1803,25 +1701,20 @@
           const goal =
             input.value.trim();
 
-
           if (!goal) {
 
             input.focus();
 
             return;
-
           }
-
 
           saveDailyGoal(
             goal
           );
 
-
           showMainScreen(
             goal
           );
-
         }
 
 
@@ -1856,7 +1749,6 @@
         );
 
       });
-
     }
 
 
@@ -1869,7 +1761,6 @@
       const projects =
         getProjects();
 
-
       return `
 
         <div class="widget-header">
@@ -1877,7 +1768,6 @@
           <h2 class="widget-title">
             Projects
           </h2>
-
 
           <button
             class="small-button"
@@ -1887,7 +1777,6 @@
           </button>
 
         </div>
-
 
         ${
           projects.length
@@ -1938,7 +1827,6 @@
         }
 
       `;
-
     }
 
 
@@ -1952,36 +1840,11 @@
 
       currentScene = 3;
 
-
       transitionTo(`
 
         <div id="main-screen">
 
           <div id="dashboard-inner">
-
-
-            <!-- TODAY'S GOAL -->
-
-            <div
-              id="daily-goal"
-              title="Click to edit"
-            >
-
-              <div id="daily-goal-label">
-                Today's Goal
-              </div>
-
-
-              <div id="daily-goal-text">
-
-                ${escapeHTML(
-                  goal
-                )}
-
-              </div>
-
-            </div>
-
 
             <!-- PROJECTS -->
 
@@ -2008,7 +1871,6 @@
 
               </div>
 
-
               <div
                 class="scorestream-widget-container"
                 data-ss_widget_type="vertScoreboard"
@@ -2018,6 +1880,27 @@
 
             </section>
 
+
+            <!-- TODAY'S GOAL -->
+
+            <div
+              id="daily-goal"
+              title="Click to edit"
+            >
+
+              <div id="daily-goal-label">
+                Today's Goal
+              </div>
+
+              <div id="daily-goal-text">
+
+                ${escapeHTML(
+                  goal
+                )}
+
+              </div>
+
+            </div>
 
           </div>
 
@@ -2044,25 +1927,19 @@
             "script"
           );
 
-
         scoreScript.async =
           true;
-
 
         scoreScript.type =
           "text/javascript";
 
-
         scoreScript.src =
           "https://scorestream.com/apiJsCdn/widgets/embed.js";
-
 
         document.body.appendChild(
           scoreScript
         );
-
       });
-
     }
 
 
@@ -2071,10 +1948,6 @@
        ============================================================ */
 
     function setupMainScreen() {
-
-      /*
-       * Today's Goal → edit.
-       */
 
       document
         .getElementById(
@@ -2086,7 +1959,6 @@
 
             event.stopPropagation();
 
-
             showGoal(
               getTodayGoal() || ""
             );
@@ -2094,10 +1966,6 @@
           }
         );
 
-
-      /*
-       * Restart.
-       */
 
       document
         .getElementById(
@@ -2109,26 +1977,18 @@
 
             event.stopPropagation();
 
-
             const confirmed =
               window.confirm(
                 "Are you sure you want to restart your morning routine?"
               );
 
-
             if (confirmed) {
-
               restartRoutine();
-
             }
 
           }
         );
 
-
-      /*
-       * Edit Projects.
-       */
 
       document
         .getElementById(
@@ -2140,16 +2000,11 @@
 
             event.stopPropagation();
 
-
             openProjectEditor();
 
           }
         );
 
-
-      /*
-       * Dodgers → popup.
-       */
 
       document
         .getElementById(
@@ -2161,12 +2016,10 @@
 
             event.stopPropagation();
 
-
             openDodgersPopup();
 
           }
         );
-
     }
 
 
@@ -2183,7 +2036,6 @@
             DODGERS_RECAP_API
           );
 
-
         if (!response.ok) {
 
           throw new Error(
@@ -2191,7 +2043,6 @@
           );
 
         }
-
 
         return await response.json();
 
@@ -2202,11 +2053,8 @@
           error
         );
 
-
         return null;
-
       }
-
     }
 
 
@@ -2254,8 +2102,57 @@
         return null;
 
       }
-
     }
+
+
+    /* ============================================================
+       CLOSE POPUPS WITH ESCAPE
+       ============================================================ */
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key !== "Escape"
+        ) {
+          return;
+        }
+
+
+        const dodgersPopup =
+          document.getElementById(
+            "dodgers-popup-backdrop"
+          );
+
+
+        const editor =
+          document.getElementById(
+            "editor-backdrop"
+          );
+
+
+        /*
+         * Close the topmost popup first.
+         */
+
+        if (dodgersPopup) {
+
+          dodgersPopup.remove();
+
+          return;
+
+        }
+
+
+        if (editor) {
+
+          editor.remove();
+
+        }
+
+      }
+    );
 
 
     /* ============================================================
@@ -2293,8 +2190,6 @@
           </h2>
 
 
-          <!-- LATEST RECAP VIDEO -->
-
           <div
             id="dodgers-popup-video-wrapper"
           >
@@ -2307,8 +2202,6 @@
 
           </div>
 
-
-          <!-- RECAP TITLE -->
 
           <div
             id="dodgers-popup-recap"
@@ -2329,8 +2222,6 @@
 
           </div>
 
-
-          <!-- LINKS -->
 
           <div
             id="dodgers-popup-links"
@@ -2368,11 +2259,25 @@
 
 
       /*
-       * Get the latest recap.
+       * Fetch latest recap.
        */
 
       const recap =
         await getLatestDodgersRecap();
+
+
+      /*
+       * Make sure the popup hasn't been
+       * closed while the request was loading.
+       */
+
+      if (
+        !document.getElementById(
+          "dodgers-popup-backdrop"
+        )
+      ) {
+        return;
+      }
 
 
       const videoWrapper =
@@ -2399,24 +2304,31 @@
           );
 
 
-        /*
-         * Put the actual YouTube
-         * player into the large space.
-         */
-
         if (videoId) {
 
           videoWrapper.innerHTML = `
 
             <iframe
               id="dodgers-popup-video"
+
               src="https://www.youtube.com/embed/${encodeURIComponent(
                 videoId
               )}?rel=0"
+
               title="${escapeHTML(
                 recap.title
               )}"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share
+              "
+
               allowfullscreen
             ></iframe>
 
@@ -2437,18 +2349,17 @@
         }
 
 
-        /*
-         * Add the title/link below it.
-         */
-
         recapContent.innerHTML = `
 
           <a
             href="${escapeHTML(
               recap.url
             )}"
+
             target="_blank"
+
             rel="noopener noreferrer"
+
             id="dodgers-recap-link"
           >
 
@@ -2482,7 +2393,6 @@
 
         recapContent.textContent =
           "Unable to load the latest recap.";
-
       }
 
 
@@ -2507,7 +2417,7 @@
 
 
       /*
-       * Click outside popup to close.
+       * Clicking outside popup closes it.
        */
 
       backdrop.addEventListener(
@@ -2639,9 +2549,13 @@
 
               <input
                 class="edit-input"
+
                 data-field="title"
+
                 data-index="${index}"
+
                 placeholder="Project name"
+
                 value="${escapeHTML(
                   project.title || ""
                 )}"
@@ -2650,9 +2564,13 @@
 
               <input
                 class="edit-input"
+
                 data-field="url"
+
                 data-index="${index}"
+
                 placeholder="https://..."
+
                 value="${escapeHTML(
                   project.url || ""
                 )}"
@@ -2661,7 +2579,9 @@
 
               <button
                 class="delete-item"
+
                 data-index="${index}"
+
                 title="Delete"
               >
                 ×
